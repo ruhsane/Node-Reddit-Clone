@@ -2,6 +2,7 @@ const Post = require('../models/post')
 
 module.exports = app => {
 
+//get posts in main page
   app.get('/', (req, res) => {
     Post.find({})
         .then(posts => {
@@ -12,6 +13,7 @@ module.exports = app => {
         })
   })
 
+  //get form
   app.get("/posts/new", (req, res) => {
       res.render('posts-new')
   })
@@ -28,6 +30,7 @@ module.exports = app => {
       })
   });
 
+//each post
   app.get("/posts/:id", function(req, res) {
       //LOOK UP THE Post
       Post.findById(req.params.id)
@@ -39,5 +42,15 @@ module.exports = app => {
         });
   });
 
+//subreddit
+    app.get("/n/:subreddit", function(req,res) {
+        Post.find({subreddit: req.params.subreddit})
+            .then(posts => {
+                res.render("posts-index", {posts});
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
 
 };
