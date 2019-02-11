@@ -18,14 +18,6 @@ app.use(expressValidator());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.get('/', function (req, res) {
-    res.render('home', {msg: 'Reddit.js'});
-});
-
-app.get('/posts/new', function (req, res) {
-    res.render('posts-new', {});
-});
-
 require('./controllers/posts.js')(app);
 
 // Set db
