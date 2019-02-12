@@ -17,7 +17,8 @@ describe('Posts', function() {
         title: 'post title',
         url: 'https://www.google.com',
         summary: 'post summary',
-        subreddit: 'hh'
+        subreddit: 'hh',
+        author: '123'
     };
     it("Should create with valid attributes at POST /posts/new", function(done) {
         //checks how many posts there are now
