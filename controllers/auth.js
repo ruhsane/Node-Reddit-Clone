@@ -26,4 +26,10 @@ app.post("/sign-up", (req, res) => {
         });
 });
 
+//logout
+app.get('/logout', (req, res) => {
+    res.clearCookie('nToken');
+    res.redirect('/');
+});
+
 };
