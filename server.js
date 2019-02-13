@@ -22,6 +22,8 @@ const checkAuth = (req, res, next) => {
     next();
 };
 
+app.use(express.static('public'));
+
 // Use Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
