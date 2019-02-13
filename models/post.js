@@ -12,9 +12,13 @@ const PostSchema = new Schema({
 
 });
 
-//always populate this author field
-PostSchema
-    .pre('findOne', Populate('author'))
-    .pre('find', Populate('author'))
+// //always populate this author field
+// PostSchema
+//     .pre('findOne', Populate('author'))
+//     .pre('find', Populate('author'))
+
+//Always populate the author field
+PostSchema.pre('findOne', Populate('author')).pre('find', Populate('author'))
+PostSchema.pre('findOne', Populate('comments')).pre('find', Populate('comments'))
 
 module.exports = mongoose.model("Post", PostSchema);

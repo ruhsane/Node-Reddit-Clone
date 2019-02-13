@@ -5,12 +5,17 @@ const Populate = require("../util/autopopulate");
 const CommentSchema = new Schema({
     content: {type: String, required: true },
     author: {type: Schema.Types.ObjectId, ref: "User", required: true },
-    comments: [{type: Schema.Types.ObjectId, ref: "Comment"}]
+    comments: [{type: Schema.Types.ObjectId, ref: "Comment"}],
+    postId: {type: Schema.Types.ObjectId, ref: 'Post'}
 });
 
 //always populate the author field
-CommentSchema
-    .pre('findOne', Populate('author'))
-    .pre('find', Populate('author'))
+// CommentSchema
+//     .pre('findOne', Populate('author'))
+//     .pre('find', Populate('author'))
+
+//Always populate the author field
+CommentSchema.pre('findOne', Populate('author')).pre('find', Populate('author'))
+CommentSchema.pre('findOne', Populate('comments')).pre('find', Populate('comments'))
 
 module.exports = mongoose.model("Comment", CommentSchema);

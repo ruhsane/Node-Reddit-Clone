@@ -16,6 +16,7 @@ app.post("/posts/:postId/comments", (req, res) => {
         comment
             .save()
             .then(comment => {
+                console.log(comment);
                 return Promise.all([
                   Post.findById(req.params.postId)
                 ]);
